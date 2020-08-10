@@ -1,0 +1,1 @@
+#A simple Vue Project built with vue 2.6: this was built to show most of the amazing things that can be done with Vue.js
