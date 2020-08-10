@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Demo</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header>
+        <div id="app2">
+            <a id="brand" href="#">{{name}}</a>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Produts</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div id="app">
+        <h1 v-bind:class="{message:messageColor}">{{message}}</h2>
+        <section>
+            <h2>Emit Event cart : {{cart}}</h2>
+            <add-new-cart @add-to-cart="updateCart"></add-new-cart>
+        </section>
+        <section>
+            <h2>Todo Items 1</h2>
+            <ul>
+                <li v-for="item in todos">
+                    <span v-if="item.completed" class="isCompleted">
+                        &check;
+                        {{item.text}}
+                    </span>
+                    <span v-if="!item.completed" class="inCompleted">
+                        &times;
+                        {{item.text}}
+                    </span> 
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 v-if="visible">Todo Items 2</h2>
+            <ol>
+                <li v-for="item in todos">
+                    <span v-bind:class="{isCompleted : item.completed, inCompleted : !item.completed}"> {{item.text}}</span>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2 v-if="visible">Counter</h2>
+            <div class="div-counter">
+                <button @click="upCount">&uparrow;</button>
+                <span>{{count}}</span>
+                <button  @click="downCount">&downarrow;</button>
+                <small v-if="countLimit">Count Limit reached &times;</small>
+            </div>
+        </section>
+
+        <section>
+            <h2 v-if="visible">Two Way Binding</h2>
+            <input v-model="userData" type="text" placeholder="write something here">
+            <p id="p-Result">
+                <small>Result: {{userData}}</small>
+            </p>
+        </section>
+
+        <section>
+            <test-component :premuim="premuim"></test-component>
+            <test-component :premuim="premuim"></test-component>
+        </section>
+        
+        <section>
+            <h2 v-if="visible">Two Way Binding v2</h2>
+            <input type="number" v-model="price"/>
+            <p id="p-Result">
+                <small>Tax: {{moneyFormatted(tax)}}</small><br>
+                <small>Total: {{moneyFormatted(total)}}</small>
+            </p>
+        </section>
+
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
